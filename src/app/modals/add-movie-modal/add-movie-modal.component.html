@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Movie</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input [(ngModel)]="movieName" placeholder="Enter movie name"></ion-input>
+    <ion-button (click)="searchMovies()">Search</ion-button>
+  </ion-item>
+
+  <ion-list *ngIf="searchResults.length > 0">
+    <ion-list-header>
+      <ion-label>Search Results</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let result of searchResults">
+      <ion-avatar slot="start">
+        <img [src]="imageBaseUrl + '/w92' + result.poster_path" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ result.title }}</h2>
+        <p> {{result.release_date | date:'y'}}</p>
+      </ion-label>
+      <ion-button (click)="addMovie(result)">Add to List</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

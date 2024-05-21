@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { MovieService } from './services/movie.service';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule, Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [IonApp, IonRouterOutlet, HttpClientModule],
   providers: [MovieService],
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit{
+  constructor(private storage: Storage) {
+
+  }
+
+  async ngOnInit(){
+    await this.storage.create();
+ 
+  }
 }

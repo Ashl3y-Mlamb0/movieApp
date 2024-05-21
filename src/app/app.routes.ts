@@ -12,7 +12,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/movies/movies.page').then( m => m.MoviesPage)
   },
   {
-    path: 'movies/:id',
+    path: 'movie-details/:id',
     loadComponent: () => import('./pages/movie-details/movie-details.page').then( m => m.MovieDetailsPage)
   },
 ];

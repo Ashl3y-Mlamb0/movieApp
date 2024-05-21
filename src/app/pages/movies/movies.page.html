@@ -1,13 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>Trending Movies</ion-title>
+  <ion-toolbar>
+    <ion-title>Movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="button-row">
+  <ion-button (click)="openUpcomingMoviesModal()">Upcoming Movies</ion-button>
+  <ion-button (click)="openPopularMoviesModal()">Top Rated Movies</ion-button>
+  <ion-button (click)="openTrendingMoviesModal()">Trending Movies</ion-button>
+  </div>
+  <ion-button expand="full" (click)="openAddMovieModal()">Add Movie</ion-button>
+
   <ion-list>
-    <ion-item button *ngFor="let item of movies">
-      <ion-label>{{item.title}}</ion-label>
-    </ion-item>
+    <ion-list-header>
+      <ion-label>My Movies</ion-label>
+    </ion-list-header>
+    <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+      <ion-item-sliding *ngFor="let movie of movies; let i = index">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img [src]="imageBaseUrl + '/w92' + movie.poster_path" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ movie.title }}</h2>
+            <p> {{movie.release_date | date:'y'}}</p>
+          </ion-label>
+          <ion-button (click)="goToMovieDetails(movie.id)">Learn More</ion-button>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="openAddMovieModal(movie, i)">
+            Edit
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="deleteMovie(i)">
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-reorder-group>
   </ion-list>
 </ion-content>

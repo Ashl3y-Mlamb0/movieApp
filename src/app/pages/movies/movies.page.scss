@@ -1,0 +1,28 @@
+ion-item {
+    ion-grid {
+      padding-top: 10px;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-around;  // This ensures even spacing
+    width: 100%;  // Ensure the container spans the full width of the toolbar
+  }
+  
+  ion-button {
+    display: flex;
+    flex-direction: column;  // Orient the icon and label vertically
+    align-items: center;  // Center the content horizontally
+    
+    ion-icon {
+      margin-bottom: 4px;  // Space between icon and label
+    }
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
